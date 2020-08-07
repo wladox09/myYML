@@ -1,0 +1,20 @@
+version: '2'
+
+services:
+  rabbitmq:
+    image: 'bitnami/rabbitmq:latest'
+    container_name: rabbitmq
+    ports:
+      - '4369:4369'
+      - '5672:5672'
+      - '25672:25672'
+      - '15672:15672'
+    volumes:
+      - 'rabbitmq_data:/bitnami'
+    environment:
+       - RABBITMQ_USER=admin
+       - RABBITMQ_PASS=secret
+       - RABBITMQ_PLUGINS=rabbitmq_management,rabbitmq_stomp,rabbitmq_web_stomp,rabbitmq_mqtt,rabbitmq_web_mqtt
+volumes:
+  rabbitmq_data:
+    driver: local
